@@ -5,7 +5,7 @@ import os
 import logging
 import datetime
 import functools
-import jwt
+from jose import jwt
 
 # pylint: disable=import-error
 from flask import Flask, jsonify, request, abort
@@ -79,7 +79,7 @@ def auth():
 
     user_data = body
 
-    return jsonify(token=_get_jwt(user_data).decode('utf-8'))
+    return jsonify(token=_get_jwt(user_data))
 
 
 @APP.route('/contents', methods=['GET'])
